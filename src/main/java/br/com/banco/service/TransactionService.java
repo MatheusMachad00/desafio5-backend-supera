@@ -11,6 +11,7 @@ import br.com.banco.repository.TransactionRepository;
 
 @Service
 public class TransactionService {
+
   @Autowired
   private TransactionRepository repository;
 
@@ -18,8 +19,12 @@ public class TransactionService {
     return repository.findAll();
   }
 
-  public Transaction create(TransactionDTO dto){
-    return repository.save(new Transaction(dto));
+  public List<Transaction> findByName(String operatorName){
+    return repository.findByOperatorName(operatorName);
+  }
+
+  public void create(TransactionDTO dto){
+    repository.save(new Transaction(dto));
   }
 
 }
