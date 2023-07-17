@@ -9,24 +9,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.banco.dto.TransactionDTO;
-import br.com.banco.model.Transaction;
-import br.com.banco.service.TransactionService;
+import br.com.banco.dto.AccountUserDTO;
+import br.com.banco.model.AccountUser;
+import br.com.banco.repository.AccountUserRepository;
+import br.com.banco.service.AccountUserService;
 
 @RestController
-@RequestMapping("/transaction")
-public class TransactionController {
+@RequestMapping("/user")
+public class AccountUserController {
+  
 
   @Autowired
-  private TransactionService service;
+  private AccountUserService service;
 
   @GetMapping
-  public List<Transaction> listAll(){
+  public List<AccountUser> listAll(){
     return service.findAll();
   }
 
   @PostMapping
-  public void create(@RequestBody TransactionDTO req){
+  public void create(@RequestBody AccountUserDTO req){
     service.create(req);
   }
 }

@@ -1,5 +1,7 @@
 package br.com.banco.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +30,7 @@ public class Transaction {
   private Long id;
 
   @Column(length = 10, nullable = false)
-  private String date;
+  private Date date;
 
   @Column(length = 100, nullable = false)
   private float value;
