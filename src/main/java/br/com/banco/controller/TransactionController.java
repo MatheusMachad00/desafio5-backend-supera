@@ -1,5 +1,6 @@
 package br.com.banco.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,17 +25,22 @@ public class TransactionController {
   private TransactionService service;
 
   @GetMapping("/findAll")
-  public List<Transaction> listAll(){
-    return service.findAll();
+  public List<Transaction> listAll() {
+  return service.findAll();
   }
-
+  
   @GetMapping("/{operatorName}")
-  public List<Transaction> listByName(@PathVariable String operatorName){
-    return service.findByName(operatorName);
+  public List<Transaction> listByName(@PathVariable String operatorName) {
+  return service.findByName(operatorName);
   }
 
+  @GetMapping("/{date}")
+  public List<Transaction> listByDate(@PathVariable Date date) {
+    return service.findByDate(date);
+  }
+  
   @PostMapping
-  public void create(@RequestBody TransactionDTO req){
-    service.create(req);
+  public void create(@RequestBody TransactionDTO req) {
+  service.create(req);
   }
 }

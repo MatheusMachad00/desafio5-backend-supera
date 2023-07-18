@@ -1,5 +1,6 @@
 package br.com.banco.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,10 @@ public class TransactionService {
 
   public List<Transaction> findByName(String operatorName){
     return repository.findByOperatorName(operatorName);
+  }
+
+  public List<Transaction> findByDate(Date date){
+    return repository.findByDate(date);
   }
 
   public void create(TransactionDTO dto){

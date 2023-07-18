@@ -18,8 +18,6 @@ import br.com.banco.service.AccountUserService;
 @RestController
 @RequestMapping("/user")
 public class AccountUserController {
-  
-
   @Autowired
   private AccountUserService service;
 

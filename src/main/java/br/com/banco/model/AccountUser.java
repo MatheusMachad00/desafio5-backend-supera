@@ -29,5 +29,4 @@ public class AccountUser {
 
   @Column(length = 1000, nullable = false)
   private Float balance;
-
 }

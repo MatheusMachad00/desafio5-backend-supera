@@ -10,6 +10,6 @@ import br.com.banco.model.Transaction;
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
   
   List<Transaction> findByOperatorName(String operatorName);
-  
+  List<Transaction> findByDate(Date date);
 
 }
