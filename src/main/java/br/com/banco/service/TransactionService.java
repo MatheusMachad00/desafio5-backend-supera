@@ -28,6 +28,10 @@ public class TransactionService {
     return repository.findByDate(date);
   }
 
+  public List<Transaction> findByAccountId(Long accountID){
+    return repository.findByAccountID(accountID);
+  }
+
   public void create(TransactionDTO dto){
     repository.save(new Transaction(dto));
   }

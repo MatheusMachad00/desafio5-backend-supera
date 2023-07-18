@@ -38,6 +38,11 @@ public class TransactionController {
   public List<Transaction> listByDate(@PathVariable Date date) {
     return service.findByDate(date);
   }
+
+  @GetMapping("/{accountID}")
+  public List<Transaction> listByDate(@PathVariable Long accountID) {
+    return service.findByAccountId(accountID);
+  }
   
   @PostMapping
   public void create(@RequestBody TransactionDTO req) {

@@ -11,5 +11,6 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
   
   List<Transaction> findByOperatorName(String operatorName);
   List<Transaction> findByDate(Date date);
+  List<Transaction> findByAccountID(Long accountID);
 
 }
