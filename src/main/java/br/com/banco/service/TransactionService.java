@@ -16,24 +16,29 @@ public class TransactionService {
   @Autowired
   private TransactionRepository repository;
 
-  public List<Transaction> findAll(){
+  public List<Transaction> findAll() {
     return repository.findAll();
   }
 
-  public List<Transaction> findByName(String operatorName){
+  public List<Transaction> findByName(String operatorName) {
     return repository.findByOperatorName(operatorName);
   }
 
-  public List<Transaction> findByDate(Date date){
-    return repository.findByDate(date);
-  }
-
-  public List<Transaction> findByAccountId(Long accountID){
+  public List<Transaction> findByAccountId(Long accountID) {
     return repository.findByAccountID(accountID);
   }
 
-  public void create(TransactionDTO dto){
+  public void create(TransactionDTO dto) {
     repository.save(new Transaction(dto));
   }
+
+  public List<Transaction> findTransactionsByDateRange(Date startDate, Date endDate) {
+    return repository.findByDateBetween(startDate, endDate);
+  }
+
+  /* public List<Transaction> findTransactionsByDateRangeAndOperatorName(Date startDate, Date endDate,
+      String operatorName) {
+    return repository.findByDateBetweenAndOperatorName(startDate, endDate, operatorName);
+  } */
 
 }

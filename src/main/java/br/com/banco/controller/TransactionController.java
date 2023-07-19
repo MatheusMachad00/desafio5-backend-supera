@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,26 +27,36 @@ public class TransactionController {
 
   @GetMapping("/findAll")
   public List<Transaction> listAll() {
-  return service.findAll();
-  }
-  
-  @GetMapping("/{operatorName}")
-  public List<Transaction> listByName(@PathVariable String operatorName) {
-  return service.findByName(operatorName);
+    return service.findAll();
   }
 
-  @GetMapping("/{date}")
-  public List<Transaction> listByDate(@PathVariable Date date) {
-    return service.findByDate(date);
+  @GetMapping("/{operatorName}")
+  public List<Transaction> listByName(@PathVariable String operatorName) {
+    return service.findByName(operatorName);
   }
 
   @GetMapping("/{accountID}")
   public List<Transaction> listByDate(@PathVariable Long accountID) {
     return service.findByAccountId(accountID);
   }
-  
+
+  @GetMapping("/findByDate/{startDate}/{endDate}")
+  public List<Transaction> getTransactionsByDateRange(
+      @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+      @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
+    return service.findTransactionsByDateRange(startDate, endDate);
+  }
+
+  /* @GetMapping("/findByDateAndName/{startDate}/{endDate}/{operatorName}")
+  public List<Transaction> getTransactionsByDateRangeAndOperatorName(
+      @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+      @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate,
+      @PathVariable String operatorName) {
+    return service.findTransactionsByDateRangeAndOperatorName(startDate, endDate, operatorName);
+  } */
+
   @PostMapping
   public void create(@RequestBody TransactionDTO req) {
-  service.create(req);
+    service.create(req);
   }
 }

@@ -43,4 +43,12 @@ public class Transaction {
 
   @Column(length = 100, nullable = false)
   private Long accountID;
+
+  public Transaction(Date date, float value, String operationType, String operatorName, Long accountID) {
+    this.date = date;
+    this.value = value;
+    this.operationType = operationType;
+    this.operatorName = operatorName;
+    this.accountID = accountID;
+  }
 }
