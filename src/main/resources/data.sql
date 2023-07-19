@@ -1,30 +1,33 @@
-CREATE TABLE conta
-(
-    id_conta IDENTITY NOT NULL PRIMARY KEY,
-    nome_responsavel VARCHAR(50) NOT NULL
+CREATE TABLE account_user (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    balance DECIMAL(10, 2) NOT NULL
 );
 
+/* CREATE TABLE transaction (
+    id SERIAL PRIMARY KEY,
+    date DATE NOT NULL,
+    value FLOAT NOT NULL,
+    operationType VARCHAR(100) NOT NULL,
+    operatorName VARCHAR(50),
+    accountID BIGINT NOT NULL,
+    FOREIGN KEY (accountID) REFERENCES account_user(id)
+); */
 
-CREATE TABLE transferencia
-(
-    id IDENTITY NOT NULL PRIMARY KEY,
-    data_transferencia TIMESTAMP WITH TIME ZONE NOT NULL,
-    valor NUMERIC (20,2) NOT NULL,
-    tipo VARCHAR(15) NOT NULL,
-    nome_operador_transacao VARCHAR (50),
-    conta_id INT NOT NULL,
 
-        CONSTRAINT FK_CONTA
-        FOREIGN KEY (conta_id)
-        REFERENCES conta(id_conta)
-);
+INSERT INTO account_user (username, balance) VALUES
+('Ichigo Kurosaki', 1000.00),
+('Naruto Uzumaki', 500.50),
+('Sakura Haruno', 3000.75);
 
-INSERT INTO conta (id_conta, nome_responsavel) VALUES (1,'Fulano');
-INSERT INTO conta (id_conta, nome_responsavel) VALUES (2,'Sicrano');
 
-INSERT INTO transferencia (id,data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES (1,'2019-01-01 12:00:00+03',30895.46,'DEPOSITO', null, 1);
-INSERT INTO transferencia (id,data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES (2,'2019-02-03 09:53:27+03',12.24,'DEPOSITO', null,2);
-INSERT INTO transferencia (id,data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES (3,'2019-05-04 08:12:45+03',-500.50,'SAQUE', null,1);
-INSERT INTO transferencia (id,data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES (4,'2019-08-07 08:12:45+03',-530.50,'SAQUE', null,2);
-INSERT INTO transferencia (id,data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES (5,'2020-06-08 10:15:01+03',3241.23,'TRANSFERENCIA', 'Beltrano',1);
-INSERT INTO transferencia (id,data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES (6,'2021-04-01 12:12:04+03',25173.09,'TRANSFERENCIA', 'Ronnyscley',2);
+/* INSERT INTO transaction (date, value, operationType, operatorName, accountID)
+VALUES 
+    ('2019-01-01', 100.00, 'Deposit', 'Ichigo Kurosaki', 1),
+    ('2019-01-02', 50.00, 'Withdrawal', 'Ichigo Kurosaki', 1),
+    ('2019-01-03', 200.00, 'Deposit', 'Naruto Uzumaki', 2),
+    ('2019-01-04', 75.50, 'Withdrawal', 'Naruto Uzumaki', 2),
+    ('2019-01-05', 500.00, 'Deposit', 'Sakura Haruno', 3),
+    ('2019-01-06', 250.75, 'Withdrawal', 'Sakura Haruno', 3); */
+
+

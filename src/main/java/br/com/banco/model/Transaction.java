@@ -16,15 +16,6 @@ import br.com.banco.dto.TransactionDTO;
 @Entity
 @NoArgsConstructor
 public class Transaction {
-
-  public Transaction(TransactionDTO data){
-    this.date = data.date();
-    this.value = data.value();
-    this.operationType = data.operationType();
-    this.operatorName = data.operatorName();
-    this.accountID = data.accountID();
-  }
-
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
@@ -44,11 +35,11 @@ public class Transaction {
   @Column(length = 100, nullable = false)
   private Long accountID;
 
-  public Transaction(Date date, float value, String operationType, String operatorName, Long accountID) {
-    this.date = date;
-    this.value = value;
-    this.operationType = operationType;
-    this.operatorName = operatorName;
-    this.accountID = accountID;
+  public Transaction(TransactionDTO data){
+    this.date = data.date();
+    this.value = data.value();
+    this.operationType = data.operationType();
+    this.operatorName = data.operatorName();
+    this.accountID = data.accountID();
   }
 }
