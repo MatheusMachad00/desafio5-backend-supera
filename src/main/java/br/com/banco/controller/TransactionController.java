@@ -30,7 +30,7 @@ public class TransactionController {
     return service.findAll();
   }
 
-  @GetMapping("/{operatorName}")
+  @GetMapping("/findByName/{operatorName}")
   public List<Transaction> listByName(@PathVariable String operatorName) {
     return service.findByName(operatorName);
   }
